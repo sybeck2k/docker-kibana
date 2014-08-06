@@ -4,7 +4,8 @@ Description=kibana
 [Service]
 EnvironmentFile=/etc/environment
 ExecStartPre=/usr/bin/docker pull sybeck2k/kibana
-ExecStart=/usr/bin/docker run --rm --name kibana -t CONFD_BACKEND=etcd -t ETCD_HOST=${COREOS_PRIVATE_IPV4} -p 9200:9200 -p 9300:9300 sybeck2k/kibana
+ExecStart=/usr/bin/docker run --rm --name kibana -e CONFD_BACKEND=etcd -e ETCD_HOST=${COREOS_PRIVATE_IPV4} -p 80:80 sybeck2k/kibana
+sybeck2k/kibana
 ExecStartPost=/usr/bin/etcdctl set /elasticsearch/host ${COREOS_PRIVATE_IPV4}
 ExecStop=/usr/bin/docker kill kibana
 ExecStopPost=/usr/bin/etcdctl rm /elasticsearch/host
