@@ -13,4 +13,4 @@ export ELASTICSEARCH_HOST=${ELASTICSEARCH_HOST:-172.17.42.1}
 
 # Loop until confd has updated the logstash config
 /confd -interval 30 -backend $CONFD_BACKEND -node $ETCD -config-file /etc/confd/conf.d/nginx.toml
-
+/confd -interval 30 -backend $CONFD_BACKEND -node $ETCD -config-file /etc/confd/conf.d/kibana-config.toml

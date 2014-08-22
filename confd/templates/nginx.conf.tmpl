@@ -6,7 +6,7 @@ server {
   # Make site accessible from http://localhost/
   # server_name localhost;
   access_log /dev/stdout;
-  
+
   location = /health {
     return 200;
     access_log off;
@@ -18,7 +18,7 @@ server {
   }
 
   # Reverse proxy elasticsearch ajax calls
-  location ~ ^/(_aliases|_nodes)$ { 
+  location ~ ^/(_aliases|_nodes)$ {
     proxy_pass http://{{getv "/elasticsearch/host"}}:9200;
     proxy_read_timeout 90;
   }
