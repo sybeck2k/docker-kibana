@@ -1,5 +1,7 @@
 FROM ubuntu:14.04
 
+MAINTAINER Roberto Migli <robertomigli@gmail.com>
+
 RUN apt-get update && apt-get -y upgrade
 RUN apt-get -y install wget nginx-full
 
