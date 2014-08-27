@@ -6,7 +6,7 @@ server {
   # Make site accessible from http://localhost/
   # server_name localhost;
   access_log /dev/stdout;
-  
+
   location = /health {
     return 200;
     access_log off;
@@ -18,25 +18,24 @@ server {
   }
 
   # Reverse proxy elasticsearch ajax calls
-  location ~ ^/(_aliases|_nodes)$ { 
-    proxy_pass http://{{getv "/elasticsearch/host"}}:9200;
+  location ~ ^/(_aliases|_nodes)$ {
+    proxy_pass http://{{getv "/elasticsearch/host"}}:{{getv "/elasticsearch/port"}};
     proxy_read_timeout 90;
   }
   location ~ ^/.*/(_aliases|_search)$ {
-    proxy_pass http://{{getv "/elasticsearch/host"}}:9200;
+    proxy_pass http://{{getv "/elasticsearch/host"}}:{{getv "/elasticsearch/port"}};
     proxy_read_timeout 90;
   }
-
   location ~ ^/.*/_mapping {
-    proxy_pass http://{{getv "/elasticsearch/host"}}:9200;
+    proxy_pass http://{{getv "/elasticsearch/host"}}:{{getv "/elasticsearch/port"}};
     proxy_read_timeout 90;
   }
   location ~ ^/kibana-int/dashboard/.*$ {
-    proxy_pass http://{{getv "/elasticsearch/host"}}:9200;
+    proxy_pass http://{{getv "/elasticsearch/host"}}:{{getv "/elasticsearch/port"}};
     proxy_read_timeout 90;
   }
   location ~ ^/kibana-int/temp.*$ {
-    proxy_pass http://{{getv "/elasticsearch/host"}}:9200;
+    proxy_pass http://{{getv "/elasticsearch/host"}}:{{getv "/elasticsearch/port"}};
     proxy_read_timeout 90;
   }
 }

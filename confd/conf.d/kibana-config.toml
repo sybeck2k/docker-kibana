@@ -1,0 +1,10 @@
+[template]
+src   = "kibana-config.conf.tmpl"
+dest  = "/opt/kibana-3.1.0/config.js"
+owner = "root"
+group = "root"
+mode  = "0644"
+keys = [
+  "elasticsearch/host",
+  "elasticsearch/port"
+]
