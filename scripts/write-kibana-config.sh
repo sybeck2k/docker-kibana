@@ -1,7 +1,13 @@
+#!/bin/bash
+
+ELASTICSEARCH_HOST=${ELASTICSEARCH_HOST:-localhost}
+ELASTICSEARCH_PORT=${ELASTICSEARCH_PORT:-9200}
+
+cat > /opt/kibana/config.js <<EOF
 define(['settings'],
 function (Settings) {
   return new Settings({
-    elasticsearch: 'http://{{getv "/elasticsearch/host"}}:{{getv "/elasticsearch/port"}}',
+    elasticsearch: 'http://$ELASTICSEARCH_HOST:$ELASTICSEARCH_PORT',
     default_route     : '/dashboard/file/default.json',
     kibana_index: "kibana-int",
     panel_names: [
@@ -23,3 +29,4 @@ function (Settings) {
     ]
   });
 });
+EOF
