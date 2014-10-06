@@ -6,7 +6,7 @@ A docker container which sets up a kibana dashboard.
 
 __Things you'll probably change__
 
-- NGINX_PORT
+- KIBANA_PORT
 - ELASTICSEARCH_HOST
 - ELASTICSEARCH_PORT
 

@@ -1,7 +1,7 @@
 #!/bin/bash
+set -e
 
 # Write the configs
-/opt/kibana/bin/write-nginx-config.sh
 /opt/kibana/bin/write-kibana-config.sh
 
-exec /usr/sbin/nginx
+exec /opt/kibana/bin/kibana
