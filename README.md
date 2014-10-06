@@ -1,18 +1,43 @@
-Docker Kibana
-=============
+# kibana
 
-A Kibana frontend with an Nginx proxy to Elasticsearch. Uses confd to dynamically update the configuration of Nginx.
+A docker container which sets up a kibana dashboard.
 
-By default, confd is configured to use ENV as backend. In this case, you will need just to pass the environment variable
-```ELASTICSEARCH_HOST``` (default value: 172.17.42.1)
+## Environmental Variable
 
-There is a corrsponding ```ELASTICSEARCH_PORT``` env variable too.
+__Things you'll probably change__
 
-If you want to specify the IP of Elasticsearch do:
+- KIBANA_PORT
+- ELASTICSEARCH_HOST
+- ELASTICSEARCH_PORT
+
+## Ports Exposed
+
+__Defaults__
+
+- 80 (nginx)
+
+## Steps
+
+__build__
 
 ```
-docker run -d -p 80:80 -e ELASTICSEARCH_HOST=10.0.0.5 --name es-kibana sybeck2k/kibana
-
+docker build -t registry.banno-internal.com/kibana .
 ```
 
-If you use etcd, you can just run docker with the following ENV variables set: ```ETCD_PORT```, ```ETCD_HOST_IP```, and ```CONFD_BACKEND=etcd``` - confd will then update the configuration of Nginx according to the etcd key ```/elasticsearh/host``` and the port ```/elasticsearh/port```
+__run__
+
+```
+docker run registry.banno-internal.com/kibana
+```
+
+__pull__
+
+```
+docker pull registry.banno-internal.com/kibana
+```
+
+__push__
+
+```
+docker push registry.banno-internal.com/kibana
+```
